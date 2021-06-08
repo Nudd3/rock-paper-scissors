@@ -1,0 +1,73 @@
+* {
+    font-family: 'Rock Salt', cursive;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    background: #272727;
+    color: #747474;
+    text-align: center;
+}
+
+#title {
+    margin: 0;
+    padding: 0;
+    font-size: 3em;
+}
+
+#score{
+    font-size: 3em;
+}
+
+#buttons {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 90%;
+}
+
+.btn {
+    font-size: 1.5em;
+    width: 150px;
+    height: 150px;
+    border: 0.5rem;
+    margin: 25px;
+    transition: all 0.5s ease;
+    color: #272727;
+}
+
+.btn:hover {
+    transform: scale(1.3);
+    border-color: #000;
+    box-shadow: 0 0 2rem #000;
+}
+
+#rockBtn {
+    background: #FFE400;
+}
+
+#paperBtn {
+    background: #14A76C;
+}
+
+#scissorsBtn {
+    background: #FF652F;
+}
+
+#show-results {
+    font-size: 1.5em;
+}
+
+#footer {
+    border-top: 2px solid #FFE400;
+    height: 40px;
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #272727;
+}

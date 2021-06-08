@@ -1,6 +1,4 @@
-if (typeof window.ethereum.autoRefreshOnNetworkChange !== "undefined") {
-    window.ethereum.autoRefreshOnNetworkChange = false;
-}
+
 
 function computerPlay() {
 
@@ -18,58 +16,79 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
 
+    if(playerScore === 5 || computerScore === 5)
+        return;
+
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
+    let result = "";
+    
+    
 
     if(playerSelection === computerSelection){
-        return "It's a Draw!"
+        result = "It's a Draw!";
     }
     
     if(playerSelection === "rock"){
 
         if(computerSelection === "scissors"){
             playerScore++;
-            return "You win! " + playerSelection + " beats " + computerSelection;
+            result = "You win! " + playerSelection + " beats " + computerSelection;
         } else if(computerSelection === "paper"){
             computerScore++;
-            return "You Lose! " + computerSelection + " beats " + playerSelection;
+            result = "You Lose! " + computerSelection + " beats " + playerSelection;
         }
 
     } else if(playerSelection === "scissors"){
 
         if(computerSelection === "paper"){
             playerScore++;
-            return "You win! " + playerSelection + " beats " + computerSelection;
+            result = "You win! " + playerSelection + " beats " + computerSelection;
         } else if(computerSelection === "rock"){
             computerScore++;
-            return "You Lose! " + computerSelection + " beats " + playerSelection;
+            result = "You Lose! " + computerSelection + " beats " + playerSelection;
         }
 
     } else if(playerSelection === "paper"){
 
         if(computerSelection === "rock"){
             playerScore++;
-            return "You win! " + playerSelection + " beats " + computerSelection;
+            result = "You win! " + playerSelection + " beats " + computerSelection;
         } else if(computerSelection === "scissors"){
             computerScore++;
-            return "You Lose! " + computerSelection + " beats " + playerSelection;
+            result = "You Lose! " + computerSelection + " beats " + playerSelection;
         }
     }
-}
 
-function game(){
-
-    
-
-    for(let i = 0; i < 5; i++){
-
-        //let playerScore = prompt("Your choice: ");
-        console.log(playRound(prompt("Your choice: "), computerPlay()));
-        
+    if(playerScore === 5){
+        return "Player wins!";
     }
-    console.log("Final Score: \nPlayer: " + playerScore + ", Computer: " + computerScore);
+    else if(computerScore === 5){
+        return "Computer Win!";
+    }
+
+    return result;
 }
+
+
 let playerScore = 0;
 let computerScore = 0;
 
-game();
+const container = document.querySelector('#show-results');
+const content = document.createElement('h2');
+content.classList.add('content');
+
+const buttons = document.querySelectorAll('.btn');
+buttons.forEach(btn => btn.addEventListener('click', () => {
+    let playerSelection = btn.textContent;
+    content.textContent = playRound(playerSelection, computerPlay());
+    container.appendChild(content);
+
+    const c = document.querySelector('#score');
+    c.textContent = playerScore + " : " + computerScore;
+}));
+
+
+
+
+
